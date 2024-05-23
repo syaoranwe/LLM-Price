@@ -1,2 +1,200 @@
-# LLM-Price
-大语言模型服务价格汇总
+# 大语言模型服务价格汇总
+
+2024年5月，各大模型厂商打起了“价格战”，意图拉拢更多开发者参与应用开发和模型落地探索。本仓库用于收集各大云服务厂商的大语言模型服务价格，方便用户对比。价格单位按照输入/输出每百万词元（Token）需要花费的人民币价格进行计算，美元到人民币汇率按最近一年的平均汇率7.2计算。
+
+本仓库只是一个速查表，更详细的信息请参考各个厂商的官方价格文档。例如闲时价格、预付费价格、Batch调用价格等。
+
+由于最近一年不同厂商的免费试用权益变动较多，获得免费权益的门槛变动也多，有效期也短，因此本仓库不收集免费试用权益包信息。
+
+
+**统计模型和平台范围**：
+- 只选取应用较为广泛，使用的应用数和人数较多，较为典型和具有代表性的模型和平台。以及服务价格较为便宜的平台。
+- 由于本速查表主要面向翻译和中英双语应用，对于闭源且不支持中文（例如LLaMa系列）或中文支持较差的模型（例如Gemma-7B、mixtral系列）不会被纳入统计。
+- 如果某开源模型在其官方平台已经十分便宜，那第三方平台的价格不会被纳入统计。
+- 主要面向企业用户，个人用户难以申请使用的平台和模型不会被纳入统计。
+- 在官方出了新模型且新模型性能提升较大，且价格相较旧模型更便宜或者持平的情况下，不再额外统计旧模型。（例如只统计LLaMa3不统计LLaMa2）
+- 官方宣布即将被弃用的模型，或者描述为Older/Legacy的模型不会被纳入统计。
+- 由于模型太小和/或性能不佳，连一篇完整新闻文章都翻译不下来的模型（例如qwen1.5-0.5b-chat）不会被纳入统计。
+
+
+**统计数据范围**：
+- 模型提供平台及定价页面
+- API调用格式是否兼容OpenAI格式
+- 审查情况（要求翻译[BBC政治新闻](https://www.bbc.com/news/world-asia-66727459)检查是否存在截断和拒绝回复的情况），不统计对暴力、色情、种族主义等内容的审查。
+- 价格
+
+
+
+## GPT系列
+模型提供平台：[OpenAI](https://openai.com/pricing)/[Azure](https://azure.microsoft.com/zh-cn/pricing/details/cognitive-services/openai-service/)（定价基本一致）
+
+API是否兼容OpenAI格式：OpenAI的天然兼容；Azure的有自定义格式，不兼容
+
+审查情况：无审查
+
+价格：
+
+| **模型**      | **输入价格（元/M Tokens）** | **输出价格（元/M Tokens）** | **上下文窗口大小（K）** | **备注** |
+|:-----------:|:--------------------:|:--------------------:|:--------------:|:------:|
+| gpt-4o      | 36                   | 108                  | 128            |        |
+| gpt-4-turbo | 72                   | 216                  | 128            |        |
+| gpt-4       | 216                  | 432                  | 8              |        |
+| gpt-4-32k   | 432                  | 864                  | 32             |        |
+|gpt-3.5-turbo| 3.6                  | 10.8                 | 16             |        |
+
+
+## Claude系列
+模型提供平台： [Anthropic](https://docs.anthropic.com/en/docs/models-overview#model-comparison) / [AWS](https://aws.amazon.com/cn/bedrock/pricing/) 价格类似
+
+API是否兼容OpenAI格式：否，自定义格式
+
+审查情况：无审查
+
+价格：
+
+| **模型**      | **输入价格（元/M Tokens）** | **输出价格（元/M Tokens）** | **上下文窗口大小（K）** | **备注** |
+|:-----------:|:--------------------:|:--------------------:|:--------------:|:------:|
+| claude-3-opus | 108 | 540 | 200 |  |
+| claude-3-sonnet | 21.6 | 108 | 200 |  |
+| claude-3-haiku | 1.8 | 9 | 200 |  |
+
+## Gemini系列
+模型提供平台： [谷歌](https://ai.google.dev/pricing?hl=zh-cn) / [openrouter](https://openrouter.ai/docs#models)
+
+API是否兼容OpenAI格式：否，自定义格式
+
+审查情况：无审查
+
+**谷歌官方平台随用随付**方案价格（注：以下价格为输入输出在128K以内的情况，超过128K翻倍）：
+
+| **模型**      | **输入价格（元/M Tokens）** | **输出价格（元/M Tokens）** | **上下文窗口大小（K）** | **备注** |
+|:-----------:|:--------------------:|:--------------------:|:--------------:|:------:|
+| gemini-1.5-pro | 25.2 | 75.6 | 1000 |  |
+| gemini-1.5-flash | 2.52 | 7.56 | 2800 |  |
+| gemini-1.0-pro | 3.6 | 10.8 | 32 |  |
+
+**openrouter**平台价格（有批发价）：
+| **模型**      | **输入价格（元/M Tokens）** | **输出价格（元/M Tokens）** | **上下文窗口大小（K）** | **备注** |
+|:-----------:|:--------------------:|:--------------------:|:--------------:|:------:|
+| gemini-1.5-pro | 18 | 54 | 2800 |  |
+| gemini-1.5-flash | 1.8 | 5.4 | 2800 |  |
+| gemini-1.0-pro | 0.9 | 2.7 | 32 | 上下文窗口大小众说纷纭，建议以实际使用情况为准 |
+
+
+## GLM系列
+模型提供平台： [智谱AI](https://open.bigmodel.cn/pricing)
+
+API是否兼容OpenAI格式：兼容，参见[文档](https://open.bigmodel.cn/dev/api#openai_sdk)。
+
+审查情况：平台对API输出有审查，参见[审查文档](https://open.bigmodel.cn/dev/howuse/securityaudit)。
+
+价格：
+
+| **模型**      | **输入价格（元/M Tokens）** | **输出价格（元/M Tokens）** | **上下文窗口大小（K）** | **备注** |
+|:-----------:|:--------------------:|:--------------------:|:--------------:|:------:|
+| GLM-4 | 100 | 100 | 128 |  |
+| GLM-3-Turbo | 1 | 1 | 128 |  |
+
+注：由于ChatGLM开源版本商用API较少，计费通常也比GLM-3-Turbo贵，性能也和GLM-3-Turbo差不多，所以不统计。
+
+
+## Deepseek系列
+模型提供平台： [deepseek官方开放平台](https://platform.deepseek.com/api-docs/zh-cn/pricing)
+API是否兼容OpenAI格式：是
+
+审查情况：平台对API输出有审查
+
+价格：
+
+| **模型**      | **输入价格（元/M Tokens）** | **输出价格（元/M Tokens）** | **上下文窗口大小（K）** | **备注** |
+|:-----------:|:--------------------:|:--------------------:|:--------------:|:------:|
+| deepseek-chat（基于DeepSeek-V2） | 1 | 2 | 128 |  |
+
+
+## 零一万物Yi系列
+模型提供平台： [零一万物大模型开放平台](https://platform.lingyiwanwu.com/docs)
+
+API是否兼容OpenAI格式：是
+
+审查情况：平台对API输入和输出有审查
+
+价格：
+
+| **模型**      | **输入价格（元/M Tokens）** | **输出价格（元/M Tokens）** | **上下文窗口大小（K）** | **备注** |
+|:-----------:|:--------------------:|:--------------------:|:--------------:|:------:|
+| yi-large | 20 | 20 | 16 |  |
+| yi-large-turbo | 12 | 12 | 16 |  |
+| yi-medium-200k | 12 | 12 | 200 |  |
+| yi-medium | 2.5 | 2.5 | 16 |  |
+| yi-spark | 1 | 1 | 16 |  |
+
+## 通义千问开源系列
+模型提供平台： [阿里云](https://help.aliyun.com/zh/dashscope/developer-reference/tongyi-qianwen-7b-14b-72b-metering-and-billing) / [together.ai](https://api.together.xyz/models?filter=serverless) / [openrouter](https://openrouter.ai/docs#models)
+
+API是否兼容OpenAI格式：是，参见[阿里云文档](https://help.aliyun.com/zh/dashscope/developer-reference/compatibility-of-openai-with-dashscope/)；[together.ai文档](https://docs.together.ai/docs/openai-api-compatibility)；[openrouter文档](https://openrouter.ai/docs#requests)
+
+审查情况：开源模型本身不存在审查；together.ai等平台对输入输出无审查；阿里云平台无审查
+
+**阿里云平台价格**：
+
+| **模型**      | **输入价格（元/M Tokens）** | **输出价格（元/M Tokens）** | **上下文窗口大小（K）** | **备注** |
+|:-----------:|:--------------------:|:--------------------:|:--------------:|:------:|
+| qwen1.5-110b-chat | 7 | 14 | 32 |  |
+| qwen1.5-72b-chat | 5 | 10 | 32 |  |
+| qwen1.5-32b-chat | 3.5 | 7 | 32 |  |
+| qwen1.5-14b-chat | 2 | 4 | 8 |  |
+| qwen1.5-7b-chat | 1 | 2 | 8 |  |
+
+
+**together.ai平台价格**（输入输出一致，适合翻译等输出文本较多的任务）：
+
+| **模型**      | **输入价格（元/M Tokens）** | **输出价格（元/M Tokens）** | **上下文窗口大小（K）** | **备注** |
+|:-----------:|:--------------------:|:--------------------:|:--------------:|:------:|
+| qwen1.5-110b-chat | 12.96 | 12.96 | 32 |  |
+| qwen1.5-72b-chat | 6.48 | 6.48 | 32 |  |
+| qwen1.5-32b-chat | 5.76 | 5.76 | 32 |  |
+| qwen1.5-14b-chat | 2.16 | 2.16 | 32 |  |
+| qwen1.5-7b-chat | 1.44 | 1.44 | 32 |  |
+
+
+使用openrouter调用会路由至together.ai，价格一致，但是由于有批发价，目前暂时提供9折优惠。
+
+
+## 通义千问闭源系列
+模型提供平台： [阿里云](https://help.aliyun.com/zh/dashscope/developer-reference/tongyi-thousand-questions-metering-and-billing)
+
+API是否兼容OpenAI格式：是，参见[文档](https://help.aliyun.com/zh/dashscope/developer-reference/compatibility-of-openai-with-dashscope/)
+
+审查情况：无审查
+
+价格：
+
+| **模型**      | **输入价格（元/M Tokens）** | **输出价格（元/M Tokens）** | **上下文窗口大小（K）** | **备注** |
+|:-----------:|:--------------------:|:--------------------:|:--------------:|:------:|
+| qwen-long | 0.5 | 2 | 10000 |  |
+| qwen-turbo | 2 | 6 | 8 |  |
+| qwen-plus | 4 | 12 | 32 |  |
+| qwen-max | 40 | 120 | 8 |  |
+| qwen-max-longcontext | 120 | 120 | 32 |  |
+
+## 待补充
+
+百川系列 / 豆包系列  / 文心系列 / cohere-command系列 / 微软wizardlm系列
+
+
+## 模板
+模型提供平台： []() / []() / []()
+
+API是否兼容OpenAI格式：
+
+审查情况：
+
+价格：
+
+| **模型**      | **输入价格（元/M Tokens）** | **输出价格（元/M Tokens）** | **上下文窗口大小（K）** | **备注** |
+|:-----------:|:--------------------:|:--------------------:|:--------------:|:------:|
+|  |  |  |  |  |
+|  |  |  |  |  |
+|  |  |  |  |  |
+|  |  |  |  |  |
+|  |  |  |  |  |
