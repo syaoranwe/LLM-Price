@@ -26,7 +26,7 @@
 
 
 ## GPT系列
-模型提供平台：[OpenAI](https://openai.com/pricing)/[Azure](https://azure.microsoft.com/zh-cn/pricing/details/cognitive-services/openai-service/)（定价基本一致）
+模型提供平台：[OpenAI](https://openai.com/pricing) / [Azure](https://azure.microsoft.com/zh-cn/pricing/details/cognitive-services/openai-service/)（定价基本一致）
 
 API是否兼容OpenAI格式：OpenAI的天然兼容；Azure的有自定义格式，不兼容
 
@@ -106,7 +106,7 @@ API是否兼容OpenAI格式：兼容，参见[文档](https://open.bigmodel.cn/d
 | GLM-4-0520 | 100 | 100 | 128 | 当前智谱AI最先进的模型，指令遵从能力大幅提升，发布于20240605 |
 | GLM-4-Air | 1 | 1 | 128 | 性价比最高的版本，综合性能接近GLM-4，速度快，价格实惠。 |
 | GLM-4-Airx | 10 | 10 | 128 | GLM-4-Air 的高性能版本，效果不变，推理速度达到其2.6倍。 |
-| GLM-4-Flash | 0.1 | 0.1 | 128 | 适用简单任务，速度最快，价格最实惠的版本。 |
+| GLM-4-Flash | 0.1 | 0.1 | 128 | 即开源的GLM4-9B模型，适用简单任务，速度最快，价格最实惠的版本。 |
 
 注：由于ChatGLM开源版本商用API较少，计费通常也比GLM-4-Air贵，性能也和GLM-4-Air差不多，所以不统计。
 
@@ -146,11 +146,11 @@ API是否兼容OpenAI格式：是
 | yi-spark | 1 | 1 | 16 |  |
 
 ## 通义千问开源系列
-模型提供平台： [阿里云](https://help.aliyun.com/zh/dashscope/developer-reference/tongyi-qianwen-7b-14b-72b-metering-and-billing) / [together.ai](https://api.together.xyz/models?filter=serverless) / [openrouter](https://openrouter.ai/docs#models)
+模型提供平台： [阿里云](https://help.aliyun.com/zh/dashscope/developer-reference/tongyi-qianwen-7b-14b-72b-metering-and-billing) / [together.ai](https://api.together.xyz/models?filter=serverless) / [openrouter](https://openrouter.ai/docs#models) / [siliconflow](https://siliconflow.cn/zh-cn/pricing)
 
-API是否兼容OpenAI格式：是，参见[阿里云文档](https://help.aliyun.com/zh/dashscope/developer-reference/compatibility-of-openai-with-dashscope/)；[together.ai文档](https://docs.together.ai/docs/openai-api-compatibility)；[openrouter文档](https://openrouter.ai/docs#requests)
+API是否兼容OpenAI格式：是，参见[阿里云文档](https://help.aliyun.com/zh/dashscope/developer-reference/compatibility-of-openai-with-dashscope/)；[together.ai文档](https://docs.together.ai/docs/openai-api-compatibility)；[openrouter文档](https://openrouter.ai/docs#requests)；[siliconflow文档](https://siliconflow.readme.io/)
 
-审查情况：开源模型本身不存在审查；together.ai等平台对输入输出无审查；阿里云平台无审查
+审查情况：开源模型本身不存在审查；together.ai等境外平台对输入输出无审查；阿里云平台存在审查，见[文档](https://help.aliyun.com/document_detail/2712216.html)
 
 **阿里云平台价格**：
 
@@ -167,11 +167,12 @@ API是否兼容OpenAI格式：是，参见[阿里云文档](https://help.aliyun.
 
 **together.ai平台价格**（输入输出一致，适合翻译等输出文本较多的任务）：
 
-最后更新日期：2024-05-23
+最后更新日期：2024-06-09
 
 | **模型**      | **输入价格（元/M Tokens）** | **输出价格（元/M Tokens）** | **上下文窗口大小（K）** | **备注** |
 |:-----------:|:--------------------:|:--------------------:|:--------------:|:------:|
 | qwen1.5-110b-chat | 12.96 | 12.96 | 32 |  |
+| qwen2-72b-instruct | 6.48 | 6.48 | 32 |  |
 | qwen1.5-72b-chat | 6.48 | 6.48 | 32 |  |
 | qwen1.5-32b-chat | 5.76 | 5.76 | 32 |  |
 | qwen1.5-14b-chat | 2.16 | 2.16 | 32 |  |
@@ -179,6 +180,20 @@ API是否兼容OpenAI格式：是，参见[阿里云文档](https://help.aliyun.
 
 
 使用openrouter调用会路由至together.ai，价格一致，但是由于有批发价，目前暂时提供9折优惠。
+
+**siliconflow平台价格**：
+
+最后更新日期：2024-06-09
+
+| **模型**      | **输入价格（元/M Tokens）** | **输出价格（元/M Tokens）** | **上下文窗口大小（K）** | **备注** |
+|:-----------:|:--------------------:|:--------------------:|:--------------:|:------:|
+| Qwen2-72B-Instruct | 4.13 | 4.13 | 32 |  |
+| Qwen2-57B-A14B-Instruct | 1.26 | 1.26 | 32 |  |
+| Qwen2-7B-Instruct | 0.35 | 0.35 | 32 |  |
+| Qwen1.5-110B | 4.13 | 4.13 | 32 |  |
+| Qwen1.5-32B | 1.26 | 1.26 | 32 |  |
+| Qwen1.5-14B | 0.7 | 0.7 | 32 |  |
+| Qwen1.5-7B | 0.35 | 0.35 | 32 |  |
 
 
 ## 通义千问闭源系列
