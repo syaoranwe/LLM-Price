@@ -113,7 +113,7 @@ API是否兼容OpenAI格式：是，见[谷歌官方文档](https://ai.google.de
 
 ### 微调价格
 
-Gemini微调暂时处于免费试用阶段。
+Gemini微调暂时处于免费试用阶段，推理费用同普通版本。
 
 
 ## GLM闭源系列
@@ -277,8 +277,6 @@ API是否兼容OpenAI格式：否，自定义格式
 最后更新日期：2024-12-17
 
 
-
-
 ## 文心Ernie系列
 模型提供平台： [百度千帆大模型平台](https://cloud.baidu.com/doc/WENXINWORKSHOP/s/hlrk4akp7)
 
@@ -288,17 +286,21 @@ API是否兼容OpenAI格式：否，自定义格式
 
 价格：
 
-最后更新日期：2024-05-23
+最后更新日期：2025-02-06
 
 | **模型**      | **输入价格（元/M Tokens）** | **输出价格（元/M Tokens）** | **上下文窗口大小（K）** | **备注** |
 |:-----------:|:--------------------:|:--------------------:|:--------------:|:------:|
-| ERNIE 4.0系列 | 120 | 120 | 8 |  |
-| ERNIE 3.5系列 | 12 | 12 | 最大128 |  |
-| ERNIE-3.5-128k | 12 | 12 | 128 |  |
+| ERNIE 4.0系列 | 30 | 90 | 8 |  |
+| ERNIE 4.0 Turbo | 20 | 60 | 8~128 | |
+| ERNIE 3.5系列 | 0.8 | 2 | 8~128 |  |
 | ERNIE Speed系列 | 0 | 0 | 最大128 |  |
 | ERNIE Lite系列 | 0 | 0 | 最大128 |  |
 | ERNIE Tiny系列 | 0 | 0 | 8 |  |
 
+
+### 微调价格
+
+参见百度官方[文档](https://cloud.baidu.com/doc/WENXINWORKSHOP/s/6lrk4bgxb#sft)。
 
 ## cohere/command系列
 模型提供平台： [cohere官方平台](https://cohere.com/pricing) / [openrouter](https://openrouter.ai/docs#models) / [Azure](https://azuremarketplace.microsoft.com/en/marketplace/apps/cohere.cohere-command-r-plus-offer?tab=PlansAndPrice)
@@ -309,16 +311,22 @@ API是否兼容OpenAI格式：官方平台和Azure不兼容，为自定义格式
 
 （三个平台统一）价格：
 
-最后更新日期：2024-05-23
+最后更新日期：2025-02-06
 
 | **模型**      | **输入价格（元/M Tokens）** | **输出价格（元/M Tokens）** | **上下文窗口大小（K）** | **备注** |
 |:-----------:|:--------------------:|:--------------------:|:--------------:|:------:|
-| command-r-plus | 21.6 | 108 | 128 |  |
-| command-r | 3.6 | 10.8 | 128 |  |
+| command-r-plus | 18 | 72 | 128 |  |
+| command-r | 1.08 | 4.32 | 128 |  |
+| command-r7b | 0.27 | 1.08 | 128 |  |
 
+### 微调价格
+
+| **模型**      | **微调训练语料输入价格（元/M Tokens）** | **文本模态输入价格（元/M Tokens）** | **文本模态输出价格（元/M Tokens）** | **备注** |
+|:-----------:|:--------------------:|:--------------------:|:--------------:|:------:|
+| command-r | 21.6 | 2.16 | 8.64 |  |
 
 ## 月之暗面系列
-模型提供平台： [moonshot开放平台](https://platform.moonshot.cn/docs/pricing)
+模型提供平台： [moonshot开放平台](https://platform.moonshot.cn/docs/pricing/chat#%E4%BA%A7%E5%93%81%E5%AE%9A%E4%BB%B7)
 
 API是否兼容OpenAI格式：是，参见[文档](https://platform.moonshot.cn/docs/api/chat)
 
@@ -326,11 +334,16 @@ API是否兼容OpenAI格式：是，参见[文档](https://platform.moonshot.cn/
 
 价格：
 
-最后更新日期：2024-05-24
+最后更新日期：2025-02-06
 
 | **模型**      | **输入价格（元/M Tokens）** | **输出价格（元/M Tokens）** | **上下文窗口大小（K）** | **备注** |
 |:-----------:|:--------------------:|:--------------------:|:--------------:|:------:|
 | moonshot-v1-8k | 12 | 12 | 8k |  |
+| moonshot-v1-32k | 24 | 24 | 32k |  |
+| moonshot-v1-8k-vision-preview | 12 | 12 | 8k |  |
+| moonshot-v1-32k-vision-preview | 24 | 24 | 32k |  |
+
+注：kimi背后的模型未支持微调。
 
 
 ## 模板
@@ -351,6 +364,11 @@ API是否兼容OpenAI格式：
 |  |  |  |  |  |
 |  |  |  |  |  |
 |  |  |  |  |  |
+
+### 微调价格
+
+| **模型**      | **微调训练语料输入价格（元/M Tokens）** | **文本模态输入价格（元/M Tokens）** | **文本模态输出价格（元/M Tokens）** | **备注** |
+|:-----------:|:--------------------:|:--------------------:|:--------------:|:------:|
 
 ## 其他
 
