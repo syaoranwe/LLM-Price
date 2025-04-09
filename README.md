@@ -409,17 +409,17 @@ API是否兼容OpenAI格式：是，参见[文档](https://platform.moonshot.cn/
 
 价格：
 
-最后更新日期：2025-04-06
+最后更新日期：2025-04-09
 
 | **模型**      | **输入价格（元/M Tokens）** | **输出价格（元/M Tokens）** | **上下文窗口大小（K）** | **备注** |
 |:-----------:|:--------------------:|:--------------------:|:--------------:|:------:|
-| kimi-latest-8k | 12 | 12 | 8k | 输入击中缓存价格1元/MToks |
-| kimi-latest-32k | 24 | 24 | 32k | 输入击中缓存价格1元/MToks |
-| kimi-latest-128k | 60 | 60 | 128k | 输入击中缓存价格1元/MToks |
-| moonshot-v1-8k | 12 | 12 | 8k |  |
-| moonshot-v1-32k | 24 | 24 | 32k |  |
-| moonshot-v1-8k-vision-preview | 12 | 12 | 8k |  |
-| moonshot-v1-32k-vision-preview | 24 | 24 | 32k |  |
+| kimi-latest-8k | 2 | 10 | 8k | 输入击中缓存价格1元/MToks |
+| kimi-latest-32k | 5 | 20 | 32k | 输入击中缓存价格1元/MToks |
+| kimi-latest-128k | 10 | 30 | 128k | 输入击中缓存价格1元/MToks |
+| moonshot-v1-8k | 2 | 10 | 8k |  |
+| moonshot-v1-32k | 5 | 20 | 32k |  |
+| moonshot-v1-8k-vision-preview | 2 | 10 | 8k |  |
+| moonshot-v1-32k-vision-preview | 5 | 20 | 32k |  |
 
 注：kimi背后的模型未支持微调。
 
