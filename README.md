@@ -1,6 +1,6 @@
 # 大语言模型服务价格汇总
 
-2024年5月，各大模型厂商打起了“价格战”，意图拉拢更多开发者参与应用开发和模型落地探索。本仓库用于收集各大云服务厂商的大语言模型服务价格，方便用户对比。价格单位按照输入/输出每百万词元（Token）需要花费的人民币价格进行计算，美元到人民币汇率按最近一年的平均汇率7.2计算。
+2024年5月，各大模型厂商打起了“价格战”，意图拉拢更多开发者参与应用开发和模型落地探索。本仓库用于收集各大云服务厂商的大语言模型服务价格，方便用户对比。价格单位按照输入/输出每百万词元（Token）需要花费的人民币价格进行计算，美元到人民币汇率按最近一年的平均汇率7.0计算。
 
 本仓库只是一个速查表，更详细的信息请参考各个厂商的官方价格文档。例如闲时价格、预付费价格、Batch调用价格等。
 
@@ -15,14 +15,18 @@
 - 在官方出了新模型且新模型性能提升较大，且价格相较旧模型更便宜或者持平的情况下，不再额外统计旧模型。（例如只统计LLaMa3不统计LLaMa2）
 - 官方宣布即将被弃用的模型，或者描述为Older/Legacy的模型不会被纳入统计。
 - 由于模型太小和/或性能不佳，连一篇完整新闻文章都翻译不下来的模型（例如qwen1.5-0.5b-chat）不会被纳入统计。
+- 存在多个阶梯定价的模型（通常是按照上下文长度定价），我们统计16K~24K输入长度附近的定价，这通常是非Agent任务的常见长度区间。
 
 
 **统计数据范围**：
 - 模型提供平台及定价页面
 - API调用格式是否兼容OpenAI格式
-- 审查情况（要求翻译[BBC政治新闻](https://www.bbc.com/news/world-asia-66727459) 检查是否存在截断和拒绝回复的情况）。
+- 审查情况（要求翻译 [BBC政治新闻](https://www.bbc.com/news/world-asia-66727459) 检查是否存在截断和拒绝回复的情况）。
 - 价格
 
+注：
+- 由于上下文窗口现在对非Agent任务都足够大，所以不再统计各模型的上下文窗口大小。
+- 由于LORA微调在使用前沿开源模型的情况下，服务这一过程的许多算力平台和框架都相对成熟，且随着Agent的发展，微调的必要性现在已越来越小。依赖闭源平台微调的需要也越来越少，因此不再统计模型微调价格。
 
 
 ## GPT系列
@@ -34,44 +38,34 @@ API是否兼容OpenAI格式：OpenAI的天然兼容；Azure的有自定义格式
 
 价格：
 
-最后更新日期：2025-06-14
+最后更新日期：2026-02-24
 
-| **模型**      | **文本模态输入价格（元/M Tokens）** | **文本模态输出价格（元/M Tokens）** | **上下文窗口大小（K）** | **备注** |
-|:-----------:|:--------------------:|:--------------------:|:--------------:|:------:|
-| o3-pro | 144 | 576 | 200 |  |
-| o3 | 14.4 | 57.6 | 200 |  |
-| o4-mini | 7.92 | 31.68 | 200 |  |
-| gpt-4.1 | 14.4(缓存击中则打2.5折) | 57.6 | 1000 |  |
-| gpt-4.1-mini | 2.88(缓存击中则打2.5折) | 11.52 | 1000 |  |
-| gpt-4.1-nano | 0.72(缓存击中则打2.5折) | 2.88 | 1000 |  |
-| gpt-4o-mini      | 1.08(缓存击中则打5折)    | 4.32                  | 128            |        |
-| gpt-4o-mini-audio-preview      | 1.08    | 4.32                  | 128            |        |
-| gpt-4o-mini-realtime-preview      | 4.32(缓存击中则打5折)    | 17.28                  | 128            |        |
-| gpt-4o      | 18(缓存击中则打5折)         | 72                  | 128            |        |
-| gpt-4o-audio-preview  | 18                    | 72                  | 128            |        |
-| gpt-4o-realtime-preview | 36(缓存击中则打5折)                    | 144                  | 128            |        |
-| o1 | 108(缓存击中则打5折)                   | 432                  | 200            |  o1-preview的上下文窗口大小为128K      |
-| o1-mini | 7.92(缓存击中则打5折)                   | 31.68                  | 128            |        |
-| o3-mini | 7.92(缓存击中则打5折)                   | 31.68                  | 128            |        |
-| gpt-4-turbo | 72                   | 216                  | 128            |        |
-| gpt-4       | 216                  | 432                  | 8              |        |
-| gpt-4-32k   | 432                  | 864                  | 32             |        |
-| gpt-3.5-turbo| 3.6                  | 10.8                 | 16             |        |
-| gpt-4.5-preview     | 540                 | 1080                 | 128            |    即将于2025年7月下线    |
+通用闭源大模型定价：
+
+| **模型** | **文本模态输入价格（元/M Tokens）** | **文本模态输出价格（元/M Tokens）** | **备注** |
+| :---: | :---: | :---: | :---: |
+| gpt-5.2 | 12.25 | 98 | |
+| gpt-5.1 | 8.75 | 70 | |
+| gpt-5-mini | 1.75 | 14 | |
+| gpt-5-nano | 0.35 | 2.8 | |
+
+TTS/ASR/OCR 模型定价：
+
+| **模型** | **估算每小时音频消耗费用（元）** | **备注** |
+| :---: | :---: | :---: |
+| gpt-4o-mini-tts | 6.3 | |
+| gpt-4o-transcribe | 2.52 | |
+| gpt-4o-transcribe-diarize | 2.52 | |
+| gpt-4o-mini-transcribe | 1.26 | |
+
+开源模型定价：
+
+| **模型** | **文本模态输入价格（元/M Tokens）** | **文本模态输出价格（元/M Tokens）** | **备注** |
+| :---: | :---: | :---: | :---: |
+| gpt-oss-120b | 0.273 | 1.33 | 报价平台：Deepinfra |
 
 
-备注：openai官方平台推出了Flex processing功能，以牺牲速度和可用率为代价，降低了o3/o4-mini等推理模型的价格，和Batch调用的价格一致（打五折）。
-
-### 微调价格
-
-注：只适用于OpenAI官方平台，Azure平台只支持昂贵的全量微调
-
-| **模型**      | **微调训练语料输入价格（元/M Tokens）** | **文本模态输入价格（元/M Tokens）** | **文本模态输出价格（元/M Tokens）** | **备注** |
-|:-----------:|:--------------------:|:--------------------:|:--------------:|:------:|
-| gpt-4o-2024-08-06      | 180    | 27(缓存击中则打5折)    | 108            |        |
-| gpt-4o-mini-2024-07-18      | 21.6    | 2.16(缓存击中则打5折)    | 8.64            |        |
-| gpt-3.5-turbo     | 57.6    | 21.6    | 43.2            |        |
-
+备注：openai官方平台推出了Flex processing功能，以牺牲速度和可用率为代价，降低了推理价格，和Batch调用的价格一致（打五折）。适合对时间不敏感的任务。
 
 ## Claude系列
 模型提供平台： [Anthropic](https://docs.anthropic.com/en/docs/models-overview#model-comparison) / [AWS](https://aws.amazon.com/cn/bedrock/pricing/) 价格类似
@@ -82,27 +76,18 @@ API是否兼容OpenAI格式：否，自定义格式
 
 价格：
 
-最后更新日期：2025-06-02
+最后更新日期：2026-02-24
 
-| **模型**      | **输入价格（元/M Tokens）** | **输出价格（元/M Tokens）** | **上下文窗口大小（K）** | **备注** |
-|:-----------:|:--------------------:|:--------------------:|:--------------:|:------:|
-| claude-opus-4 | 108 | 540 | 200 |  |
-| claude-sonnet-4 | 21.6 | 108 | 200 |  |
-| claude-3.7-sonnet | 21.6 | 108 | 200 |  |
-| claude-3.5-sonnet | 21.6 | 108 | 200 |  |
-| claude-3.5-haiku | 5.76 | 28.8 | 200 |  |
-| claude-3-opus | 108 | 540 | 200 |  |
-| claude-3-sonnet | 21.6 | 108 | 200 |  |
-| claude-3-haiku | 1.8 | 9 | 200 |  |
+| **模型**      | **输入价格（元/M Tokens）** | **输出价格（元/M Tokens）** | **备注** |
+|:-----------:|:--------------------:|:--------------------:|:------:|
+| Claude Opus 4.6 | 35 | 175 |  |
+| Claude Sonnet 4.6 | 21 | 105 |  |
+| Claude Haiku 4.5 | 7 | 35 |  |
 
-注：Claude的提示缓存需要在调用API时显式声明想要缓存的消息，缓存消息的输入价格是普通输入的1.2~1.25倍，但是命中缓存后的输入价格将降至普通输入的1/10。详见[文档](https://docs.anthropic.com/zh-CN/docs/build-with-claude/prompt-caching)。
-
-### 微调价格
-
-Claude官方平台暂时不支持微调。AWS平台可以，但是费用较贵。
+注：Claude命中缓存后的输入价格将降至普通输入的1折，但是存储缓存消息需要额外支付存储费用。详见[文档](https://docs.anthropic.com/zh-CN/docs/build-with-claude/prompt-caching)。
 
 ## Gemini系列
-模型提供平台： [谷歌](https://ai.google.dev/pricing) / [openrouter](https://openrouter.ai/docs#models) （注：openrouter也是调用的谷歌的API，但是是一个大池子，价格同步谷歌官方）
+模型提供平台： [谷歌](https://ai.google.dev/gemini-api/docs/pricing?hl=zh-cn) / [openrouter](https://openrouter.ai/models?arch=Gemini) （注：openrouter也是调用的谷歌的API，但是是一个大池子，价格同步谷歌官方）
 
 API是否兼容OpenAI格式：是，见[谷歌官方文档](https://ai.google.dev/gemini-api/docs/openai?hl=zh-cn)
 
@@ -110,26 +95,18 @@ API是否兼容OpenAI格式：是，见[谷歌官方文档](https://ai.google.de
 
 **谷歌官方平台随用随付**方案价格
 
-（注：以下价格中，1.5版本及以下为输入输出在128K以内的情况，超过128K翻倍）：
+最后更新日期：2026-02-25
 
-最后更新日期：2025-06-29
+| **模型**      | **输入价格（元/M Tokens）** | **输出价格（元/M Tokens）** | **备注** |
+|:-----------:|:--------------------:|:--------------------:|:------:|
+| gemini-3.1-pro-preview | 14 | 84 | |
+| gemini-3-pro-preview | 14 | 84 | |
+| gemini-3-flash-preview | 3.5 | 21 | |
+| gemini-2.5-pro | 8.75 | 70 | |
+| gemini-2.5-flash | 2.1 | 17.5 | |
+| gemini-2.5-flash-lite | 0.7 | 2.8 | |
 
-| **模型**      | **输入价格（元/M Tokens）** | **输出价格（元/M Tokens）** | **上下文窗口大小（K）** | **备注** |
-|:-----------:|:--------------------:|:--------------------:|:--------------:|:------:|
-| gemini-2.5-pro | 9 | 72 | 200-1000 | 输入token超过200k时价格翻倍 |
-| gemini-2.5-flash | 2.16（除音频模态外） / 7.2（音频模态） | 18 | 1000 | 上下文输入缓存打2.5折，另有存储费用 |
-| gemini-2.5-flash-lite-preview | 0.72（除音频模态外） / 3.6（音频模态） | 2.88 | 1000 |  |
-| gemini-2.0-flash | 0.72（除音频模态外） / 5.04（音频模态） | 2.88(文本模态) | 1000 | 输入命中缓存均打2.5折 |
-| gemini-2.0-flash-lite | 0.54(所有模态) （命中缓存打2.5折） | 2.16(文本模态) | 1000 |  |
-| gemini-1.5-pro | 9（命中缓存打2.5折） | 36 | 2000 |  |
-| gemini-1.5-flash | 0.54 （命中缓存打2.5折） | 2.16 | 1000 |  |
-| gemini-1.5-flash-8B | 0.27 （命中缓存打2.5折） | 1.08 | 1000 |  |
-
-注：Gemini的提示缓存需要在调用API时显式声明，缓存消息另有存储费用（每MTok每小时7.2元，gemini-1.5-flash-8B则为1.8元，gemini-1.5-pro为32.4元）。详见[文档](https://ai.google.dev/gemini-api/docs/caching?lang=python&hl=zh-cn)。
-
-### 微调价格
-
-Gemini微调暂时处于免费试用阶段，推理费用同普通版本。
+注：Gemini的提示缓存为1折，缓存消息另有存储费用。详见[文档](https://ai.google.dev/gemini-api/docs/caching?lang=python&hl=zh-cn)。
 
 ## Gemma系列
 模型提供平台： [谷歌](https://ai.google.dev/pricing) / [DeepInfra](https://deepinfra.com/google/gemma-3-27b-it) 等
@@ -140,11 +117,11 @@ API是否兼容OpenAI格式：开源模型，大多数部署平台支持OpenAI�
 
 价格：
 
-最后更新日期：2025-03-16
+最后更新日期：2026-02-25
 
 | **模型**      | **输入价格（元/M Tokens）** | **输出价格（元/M Tokens）** | **上下文窗口大小（K）** | **备注** |
 |:-----------:|:--------------------:|:--------------------:|:--------------:|:------:|
-| gemma-3-27b-it | 0.72 | 1.44 | 128 | DeepInfra报价 |
+| gemma-3-27b-it | 0.56 | 1.12 | 128 | DeepInfra报价 |
 
 
 ## Grok系列
@@ -156,59 +133,56 @@ API是否兼容OpenAI格式：是
 
 价格：
 
-最后更新日期：2025-04-15
+最后更新日期：2026-02-25
 
-| **模型**      | **输入价格（元/M Tokens）** | **输出价格（元/M Tokens）** | **上下文窗口大小（K）** | **备注** |
-|:-----------:|:--------------------:|:--------------------:|:--------------:|:------:|
-| grok-3 | 21.6 | 108 | 128 |  |
-| grok-3-mini | 2.16 | 3.6 | 128 |  |
-| grok-2-vision-1212 | 14.4 | 72 | 8 |  |
+| **模型**      | **输入价格（元/M Tokens）** | **输出价格（元/M Tokens）** | **备注** |
+|:-----------:|:--------------------:|:--------------------:|:------:|
+| grok-4-1-fast-reasoning | 1.4 | 3.5 | grok-4价格相同 |
+| grok-4-1-fast-non-reasoning | 1.4 | 3.5 | grok-4价格相同 |
 
+注：Grok的缓存输入价格为2.5折。即Grok4.1的缓存输入价格为0.35元/M Tokens。Batch API打五折。
 
-## GLM闭源系列
+## GLM系列
 模型提供平台： [智谱AI](https://open.bigmodel.cn/pricing)
 
 API是否兼容OpenAI格式：兼容，参见[文档](https://open.bigmodel.cn/dev/api#openai_sdk)。
 
-审查情况：平台对API输出有审查，参见[审查文档](https://open.bigmodel.cn/dev/howuse/securityaudit)。
+审查情况：平台对API输出有审查，参见[审查文档](https://open.bigmodel.cn/dev/howuse/securityaudit)。但是z.ai（海外服务平台）是否存在审查未知。
 
 价格：
 
-最后更新日期：2025-04-23
+最后更新日期：2026-02-25
 
-| **模型**      | **输入价格（元/M Tokens）** | **输出价格（元/M Tokens）** | **上下文窗口大小（K）** | **备注** |
-|:-----------:|:--------------------:|:--------------------:|:--------------:|:------:|
-| GLM-4-Plus | 5 | 5 | 128 | 高智能旗舰 |
-| GLM-4-Air-250414 | 0.5 | 0.5 | 32 | 高性价比 |
-| GLM-Z1-Air | 0.5 | 0.5 | 32 | 推理模型，高性价比 |
-| GLM-Z1-AirX | 5 | 5 | 32 | 推理模型，极速推理 |
-| GLM-Z1-Flash | 0 | 0 | 32 | 推理模型，免费（但有速率限制，最小并发数为5） |
-| GLM-4-AirX | 10 | 10 | 8 | 高速推理 |
-| GLM-4-FlashX | 0.1 | 0.1 | 128 | 高速低价 |
-| GLM-4-Long | 1 | 1 | 1000 | 超长输入 |
-| GLM-4-Flash | 0 | 0 | 128 | 适用简单任务，速度最快，免费（但有速率限制，最小并发数为5） |
-| GLM-4V-Flash | 0 | 0 | 128 | 图像理解，免费（但有速率限制，最小并发数为5） |
-| GLM-4V-Plus-0111 | 4 | 4 | 8 | 图像理解，旗舰 |
-| GLM-4-Voice | 80 | 80 | 未知 | 语音模型 |
+| **模型**      | **输入价格（元/M Tokens）** | **输出价格（元/M Tokens）** | **备注** |
+|:-----------:|:--------------------:|:--------------------:|:------:|
+| GLM-5 | 4 | 18 |  |
+| GLM-4.7 | 3 | 14 |  |
+| GLM-4.6V | 1 | 3 |  |
+| GLM-4.5-Air | 0.8 | 6 |  |
+| GLM-4.7-FlashX | 0.5 | 3 |  |
+| GLM-4.6V-FlashX | 0.15 | 1.5 |  |
+| GLM-4-Air-250414 | 0.5 | 0.5 |  |
+| GLM-Z1-FlashX | 0.1 | 0.1 |  |
+| GLM-4-FlashX-250414 | 0.1 | 0.1 |  |
+| GLM-4.7-Flash | 0 | 0 | 免费的有并发限制 |
+| GLM-4.6V-Flash | 0 | 0 | 免费的有并发限制 |
+| GLM-4-Flash-250414 | 0 | 0 | 免费的有并发限制 |
+| GLM-Z1-Flash | 0 | 0 | 免费的有并发限制 |
+
+此外，ASR/TTS/OCR模型价格：
+| **模型** | **价格** | **备注** |
+| :---: | :---: | :---: |
+| GLM-OCR | 0.2元/百万Tokens | 相当于1元可处理约 2000 张 A4 大小扫描图片或 200 份 10 页简单排版PDF |
+| GLM-TTS | 2元/万字符 | GLM-TTS-Clone的音色克隆功能6元/次 |
+| GLM-ASR-2512 | 输入：16元/百万 tokens | 约0.72元/小时，输出不计费 |
 
 注：
-- 由于ChatGLM开源版本商用API较少，计费通常也比GLM-4-Air贵，性能也和GLM-4-Air差不多，所以不统计。
-- 高校师生认证后可以获得5折推理优惠。
-- Batch API打五折。
-
-### 微调价格
-
-LoRA微调与使用公有实例推理价格：
-
-| **模型**      | **微调训练语料输入价格（元/M Tokens）** | **文本模态输入价格（元/M Tokens）** | **文本模态输出价格（元/M Tokens）** | **备注** |
-|:-----------:|:--------------------:|:--------------------:|:--------------:|:------:|
-| GLM-4-Air 8k-int8 | 30 | 3 | 3 |  |
-| GLM-4-AirX 8k-int4 | 30 | 30 | 30 |  |
-| GLM-4-Flash / GLM-4-9B 8k-int8 | 25 | 2 | 2 |  |
-| ChatGLM3-6B 8k-int8 | 25 | 2 | 2 |  |
+- 高校师生认证后有[优惠](https://open.bigmodel.cn/university)。
+- Batch API打5折。
+- 缓存命中打2~2.5折。
 
 ## Deepseek系列
-模型提供平台： [deepseek官方开放平台](https://platform.deepseek.com/api-docs/zh-cn/pricing)
+模型提供平台： [deepseek官方开放平台](https://api-docs.deepseek.com/zh-cn/quick_start/pricing)
 
 API是否兼容OpenAI格式：是
 
@@ -216,23 +190,20 @@ API是否兼容OpenAI格式：是
 
 价格：
 
-最后更新日期：2025-03-16
+最后更新日期：2026-02-25
 
-| **模型**      | **输入价格（元/M Tokens）** | **输出价格（元/M Tokens）** | **上下文窗口大小（K）** | **备注** |
-|:-----------:|:--------------------:|:--------------------:|:--------------:|:------:|
-| deepseek-chat（基于DeepSeek-V3） | 2（缓存命中为0.5） | 8 | 64 |  |
-| deepseek-reasoner（基于DeepSeek-R1-0528） | 4（缓存命中为1） | 16 | 64 |  |
+| **模型**      | **输入价格（元/M Tokens）** | **输出价格（元/M Tokens）** | **备注** |
+|:-----------:|:--------------------:|:--------------------:|:------:|
+| deepseek-chat | 2 | 3 | 缓存命中打1折 |
+| deepseek-reasoner | 2 | 3 | 缓存命中打1折 |
 
 注：
-1. 字节火山引擎、硅基流动等定价与deepseek官网大致相同；部分平台的售价低于官方价格，也是有可能的。
-2. 其他推理平台，例如国外的inference-net可能略低于官方定价，且没有输出后置审查，但可能没有前缀缓存功能。
-
-### 微调价格
-deepseek暂未支持微调
-
+1. 注意：deepseek-chat 和 deepseek-reasoner 对应模型版本截止更新时为 DeepSeek-V3.2 (128K 上下文长度)，与 APP/WEB 版不同（是在进行灰度测试的新模型）。
+2. 字节火山引擎、硅基流动等定价与deepseek官网大致相同；部分平台的售价低于官方价格，也是有可能的。
+3. 其他推理平台，例如国外的inference-net可能略低于官方定价，且没有输出后置审查，但可能没有前缀缓存功能。
 
 ## Mistral系列
-模型提供平台： [mistral](https://mistral.ai/products/la-plateforme#pricing)
+模型提供平台： [mistral](https://mistral.ai/pricing#api)
 
 API是否兼容OpenAI格式：是
 
@@ -240,26 +211,18 @@ API是否兼容OpenAI格式：是
 
 价格：
 
-最后更新日期：2025-06-29
+最后更新日期：2026-02-25
 
-| **模型**      | **输入价格（元/M Tokens）** | **输出价格（元/M Tokens）** | **上下文窗口大小（K）** | **备注** |
-|:-----------:|:--------------------:|:--------------------:|:--------------:|:------:|
-| magistral-small-2506 | 3.6 | 10.8 | 40 | 推理模型 |
-| magistral-medium-2506 | 14.4 | 36 | 40 | 推理模型 |
-| mistral-large | 14.4 | 43.2 | 128 |  |
-| mistral-medium-3 | 2.88 | 14.4 | 128 |  |
-| pixtral-large-2411 | 14.4 | 43.2 | 128 | 图片输入：16*16像素为一个token |
-| codestral | 2.16 | 6.48 | 256 |  |
-| mistral-small-3.2-24b-instruct-2506 | 0.36 | 0.72 | 32 | 推理平台deepinfra:fp8 |
+| **模型**      | **输入价格（元/M Tokens）** | **输出价格（元/M Tokens）** | **备注** |
+|:-----------:|:--------------------:|:--------------------:|:------:|
+| mistral-large-latest | 3.5 | 10.5 |  |
+| mistral-medium-latest | 2.8 | 14 |  |
+| mistral-small-latest | 0.7 | 2.1 |  |
 
-### 微调价格
-
-| **模型**      | **微调训练语料输入价格（元/M Tokens）** | **文本模态输入价格（元/M Tokens）** | **文本模态输出价格（元/M Tokens）** | **备注** |
-|:-----------:|:--------------------:|:--------------------:|:--------------:|:------:|
-| mistral-large-2411 | 64.8 | 14.4 | 43.2 | 微调模型存储费用：每个模型每月28.8元 |
-| mistral-small | 21.6 | 1.44 | 4.32 | 微调模型存储费用：每个模型每月14.4元 |
-
-备注：mistral可以欧元支付，因汇率因素会比美元支付会便宜，但是只在某些模型上便宜一点点。
+备注：
+1. mistral可以欧元支付，因汇率因素与美元支付略有差异。
+2. Batch API打5折。
+3. 暂不支持前缀缓存。
 
 ## 腾讯混元系列
 模型提供平台： [腾讯云](https://cloud.tencent.com/document/product/1729/97731)
@@ -270,110 +233,46 @@ API是否兼容OpenAI格式：是，参见[腾讯云文档](https://cloud.tencen
 
 价格：
 
-最后更新日期：2025-06-14
+最后更新日期：2026-02-25
 
-| **模型**      | **输入价格（元/M Tokens）** | **输出价格（元/M Tokens）** | **上下文窗口大小（K）** | **备注** |
-|:-----------:|:--------------------:|:--------------------:|:--------------:|:------:|
-| hunyuan-t1 | 1 | 4 | 92 |  |
-| hunyuan-TurboS | 0.8 | 2 | 32 |  |
-| hunyuan-turbos-longtext-128k | 1.5 | 6 | 128 | |
-| hunyuan-turbo | 2.4 | 9.6 | 32 |  |
-| hunyuan-large | 4 | 12 | 32 |  |
-| hunyuan-large-longcontext | 6 | 18 | 134 |  |
-| hunyuan-standard | 0.5-0.8 | 2 | 32-256 |  |
-| hunyuan-functioncall | 4 | 8 | 32 |  |
-| hunyuan-code | 3.5 | 7 | 8 |  |
-| hunyuan-turbos-vision | 3 | 9 | 32 |  |
-| hunyuan-vision | 18 | 18 | 32 |  |
+| **模型**      | **输入价格（元/M Tokens）** | **输出价格（元/M Tokens）** | **备注** |
+|:-----------:|:--------------------:|:--------------------:|:------:|
+| Tencent HY 2.0 Think | 3.975 | 15.9 |  |
+| Tencent HY 2.0 Instruct | 3.18 | 7.95 |  |
 
+注：不支持前缀缓存和Batch API。
 
-## 零一万物Yi系列
-模型提供平台： [零一万物大模型开放平台](https://platform.lingyiwanwu.com/docs)
+## 阿里千问系列
+模型提供平台： [阿里云百炼](https://help.aliyun.com/zh/model-studio/model-pricing) / [openrouter](https://openrouter.ai/models) / [AIPing](https://aiping.cn/modelList)
 
-API是否兼容OpenAI格式：是
+API是否兼容OpenAI格式：是，参见[阿里云文档](https://help.aliyun.com/zh/model-studio/qwen-api-via-openai-chat-completions)；[openrouter文档](https://openrouter.ai/docs/quickstart#requests)；[AIPing文档](https://aiping.cn/docs/PlatformOverview/product)
 
-审查情况：平台对API输入和输出有审查
+审查情况：开源模型本身不存在审查；境外算力平台对输入输出普遍无审查；阿里云平台存在审查，见[文档](https://help.aliyun.com/zh/model-studio/error-code)
 
-价格：
+以下价格选自阿里云百炼官方平台（大部分千问模型支持前缀缓存）的报价：
 
-最后更新日期：2025-02-06
+最后更新日期：2026-02-25
 
-| **模型**      | **输入价格（元/M Tokens）** | **输出价格（元/M Tokens）** | **上下文窗口大小（K）** | **备注** |
-|:-----------:|:--------------------:|:--------------------:|:--------------:|:------:|
-| yi-lightning | 1 | 1 | 16 |  |
-| yi-vision-v2 | 6 | 6 | 16 |  |
-
-### 微调价格
-Yi系列暂未支持微调
-
-
-## 通义千问开源系列
-模型提供平台： [阿里云](https://help.aliyun.com/zh/dashscope/developer-reference/tongyi-qianwen-7b-14b-72b-metering-and-billing) / [together.ai](https://api.together.xyz/models?filter=serverless) / [openrouter](https://openrouter.ai/docs#models) / [siliconflow](https://siliconflow.cn/zh-cn/pricing)
-
-API是否兼容OpenAI格式：是，参见[阿里云文档](https://help.aliyun.com/zh/dashscope/developer-reference/compatibility-of-openai-with-dashscope/)；[together.ai文档](https://docs.together.ai/docs/openai-api-compatibility)；[openrouter文档](https://openrouter.ai/docs#requests)；[siliconflow文档](https://siliconflow.readme.io/)
-
-审查情况：开源模型本身不存在审查；together.ai等境外平台对输入输出无审查；阿里云平台存在审查，见[文档](https://help.aliyun.com/document_detail/2712216.html)
-
-**以下价格选自正规云计算平台的相对低的报价，上下文窗口是对应报价支持的大小，不在乎报价的话，有更大的上下文窗口推理服务可选**：
-
-最后更新日期：2025-06-14
-
-| **模型**      | **输入价格（元/M Tokens）** | **输出价格（元/M Tokens）** | **上下文窗口大小（K）** | **备注** |
-|:-----------:|:--------------------:|:--------------------:|:--------------:|:------:|
-| qwen3-235b-a22b | 0.936 | 4.32 | 82 | 平台：DeepInfra(fp8/82K) |
-| qwen3-32b | 0.72 | 2.16 | 82 | 平台：DeepInfra(fp8/82K) |
-| qwen3-30b-a3b | 0.576 | 2.088 | 82 | 平台：DeepInfra(fp8/82K) |
-| qwen3-14b | 0.432 | 1.728 | 82 | 平台：DeepInfra(fp8/82K) |
-| qwen3-8b | 0 | 0 | 128 | 平台：硅基流动 |
-| qwen3-4b/1.7b/0.6b | 0.3 | 1.2 | 128 | 平台：阿里云；推理输出3元 |
-| qwen2.5-omni-7b | 0.6（文本）/ 38（音频）/ 2（视觉） | 2.4（文本）/ 6（音频）| 32 | 平台：阿里云 |
-| qwq-32b | 1.08 | 1.44 | 128 | 平台：DeepInfra报价 |
-| qwen2.5-72b-instruct | 0.936 | 2.88 | 128 |  平台：Nebius AI Studio |
-| qwen2.5-32b-instruct | 1.26 | 1.26 | 32 |  平台：硅基流动 |
-| qwen2.5-14b-instruct | 0.7 | 0.7 | 32 |  平台：硅基流动 |
-| qwen2.5-7b-instruct | 0.35 | 0.35 | 32 |  平台：硅基流动 |
-| qwen1.5-110b-chat | 7 | 14 | 32 |  平台：阿里云 |
-| qvq-72b-preview | 1.8 | 3.6 | 128 | 平台：DeepInfra；硅基流动报价9.9元/Mtok |
-| qwen2.5-vl-72b-instruct | 5.04 | 5.04 | 32 |  平台：openrouter.ai/provider/parasail |
-| qwen2.5-vl-7b-instruct | 2 | 5 | 128 |  平台：阿里云 / Hyperbolic报价较低但是上下文长度只有4K |
-| qwen2.5-vl-3b-instruct | 1.2 | 3.6 | 128 |  平台：阿里云 |
-| qwen2.5-coder-32b-instruct | 0.504 | 1.152 | 32 | 平台：DeepInfra；硅基流动报价1.26元/Mtok |
+| **模型**      | **输入价格（元/M Tokens）** | **输出价格（元/M Tokens）** | **备注** |
+|:-----------:|:--------------------:|:--------------------:|:------:|
+| qwen3-max | 2.5 | 10 |  |
+| qwen3.5-plus | 0.8 | 4.8 |  |
+| qwen3.5-flash | 0.2 | 2 |  |
+| Qwen3.5-397B-A17B | 1.2 | 7.2 |  |
+| Qwen3.5-122B-A10B | 0.8 | 6.4 |  |
+| qwen3.5-27b | 0.6 | 4.8 |  |
+| qwen3.5-35b-a3b | 0.4 | 3.2 |  |
 
 注：
-1. qwen2-audio-instruct这款优秀的音频模型至今没有哪个平台有官方报价。
-2. 微调价格依据平台的不同略有差异。
+1. 不同平台的上下文缓存使用方法和折扣有所不同，例如阿里云百炼的缓存有显式缓存和隐式缓存两种，折扣分别为1折和2折，且支持的模型列表也不同，详见[官方文档](https://help.aliyun.com/zh/model-studio/context-cache)。Batch API同理。
+2. 千问系列模型还有很多其他功用的模型，例如TTS/ASR等。在此不一一列举。
 
-## 通义千问闭源系列
-模型提供平台： [阿里云](https://help.aliyun.com/zh/dashscope/developer-reference/tongyi-thousand-questions-metering-and-billing)
-
-API是否兼容OpenAI格式：是，参见[文档](https://help.aliyun.com/zh/dashscope/developer-reference/compatibility-of-openai-with-dashscope/)
-
-审查情况：对输出有审查
-
-价格：
-
-最后更新日期：2025-06-14
-
-| **模型**      | **输入价格（元/M Tokens）** | **输出价格（元/M Tokens）** | **上下文窗口大小（K）** | **备注** |
-|:-----------:|:--------------------:|:--------------------:|:--------------:|:------:|
-| qwq-plus | 1.6 | 4 | 128 |  |
-| qvq-max | 8 | 32 | 128 |  |
-| qvq-plus | 2 | 5 | 128 |  |
-| qwen-long | 0.5 | 2 | 10000 |  |
-| qwen-turbo | 0.3 | 0.6 | 1000 |  |
-| qwen-plus | 0.8 | 2 | 128 |  |
-| qwen-max | 2.4 | 9.6 | 32 |  |
-| qwen-omni-turbo | 0.4（文本）/ 25（音频）/ 1.5（视觉） | 1.6（仅文本）/ 4.5（含其他模态） | 32 | 1秒音频=25Token / 每28x28像素对应1个 Token，最多1280Token；Batch调用打5折 |
-| qwen-vl-max | 3 | 9 | 32-128 | 图片token计算规则同qwen-omni |
-| qwen-vl-plus | 1.5 | 4.5 | 8-128 | 图片token计算规则同qwen-omni |
-
-
-## 豆包系列
+## 字节豆包系列
 模型提供平台： [字节跳动火山引擎](https://www.volcengine.com/docs/82379/1544106)
 
 API是否兼容OpenAI格式：否，自定义格式
 
-审查情况：存在**严重的审查（输入审查/模型内置审查/输出审查）**，见[官方文档错误码](https://www.volcengine.com/docs/82379/1299023)，搜索“敏感”
+审查情况：存在**多重审查（输入审查/模型内置审查/输出审查）**，见[官方文档错误码](https://www.volcengine.com/docs/82379/1299023)，搜索“敏感”
 
 价格：**豆包/字节/火山引擎 存在商业诚信问题，无论性价比多高，都不建议使用。详见下面的说明。**
 
@@ -392,21 +291,16 @@ API是否兼容OpenAI格式：否，自定义格式
 
 本仓库作为受害者之一，不再建议各位使用豆包闭源模型，考虑到其模型严重的审查和一般的性价比，市场上存在更好的选择。
 
-最后更新日期：2025-06-14
+最后更新日期：2026-02-26
 
-| **模型**      | **输入价格（元/M Tokens）** | **输出价格（元/M Tokens）** | **上下文窗口大小（K）** | **备注** |
-|:-----------:|:--------------------:|:--------------------:|:--------------:|:------:|
-| doubao-seed-1.6 | 0.8 | 8 | 256 | 以最常见的输入<32K，输出4K为例, thinking同价 |
-| doubao-seed-1.6-flash | 0.15 | 1.5 | 256 | 以最常见的输入<32K，输出4K为例, thinking同价 |
-| doubao-1.5-thinking-pro | 4 | 16 | 128 |  |
-| doubao-1.5-pro-32k | 0.8 | 2 | 128 |  |
-| doubao-1.5-thinking-vision-pro | 3 | 9 | 128 |  |
-| doubao-1.5-vision-pro | 3 | 9 | 128 |  |
-
-注：图片输入token计算公式：min(图片宽 * 图片高÷784, 单图 token 限制)，其中detail:high模式下，单图 token 限制 5120 token，detail:low模式下，单图 token 限制 1312 token。
+| **模型**      | **输入价格（元/M Tokens）** | **输出价格（元/M Tokens）** | **备注** |
+|:-----------:|:--------------------:|:--------------------:|:------:|
+| doubao-seed-2.0-pro | 3.2 | 16 |  |
+| doubao-seed-2.0-lite | 0.6 | 3.6 |  |
+| doubao-seed-2.0-mini | 0.2 | 2.0 |  |
 
 ## 文心Ernie系列
-模型提供平台： [百度千帆大模型平台](https://cloud.baidu.com/doc/WENXINWORKSHOP/s/Qm9cw2s7m)
+模型提供平台： [百度千帆大模型平台](https://cloud.baidu.com/doc/qianfan/s/wmh4sv6ya)
 
 API是否兼容OpenAI格式：否，自定义格式
 
@@ -414,77 +308,32 @@ API是否兼容OpenAI格式：否，自定义格式
 
 价格：
 
-最后更新日期：2025-06-14
+最后更新日期：2026-02-26
 
-| **模型**      | **输入价格（元/M Tokens）** | **输出价格（元/M Tokens）** | **上下文窗口大小（K）** | **备注** |
-|:-----------:|:--------------------:|:--------------------:|:--------------:|:------:|
-| ERNIE X1 | 2 | 8 | 32 |  |
-| ERNIE X1 Turbo | 1 | 4 | 32 |  |
-| ERNIE 4.5 Turbo VL | 3 | 9 | 32 |  |
-| ERNIE 4.5 | 4 | 16 | 8 | 多模态模型 |
-| ERNIE 4.5 Turbo | 0.8 | 3.2 | 32~128 | 纯文本模型 |
-| ERNIE 4.0系列 | 4 | 16 | 8 |  |
-| ERNIE 3.5系列 | 0.8 | 2 | 8~128 |  |
-| ERNIE Speed系列 | 0 | 0 | 最大128 | 不含ERNIE-Speed-Pro |
-| ERNIE Lite系列 | 0 | 0 | 最大128 | 不含ERNIE-Lite-Pro |
-| ERNIE Tiny系列 | 0 | 0 | 8 |  |
+| **模型**      | **输入价格（元/M Tokens）** | **输出价格（元/M Tokens）** | **备注** |
+|:-----------:|:--------------------:|:--------------------:|:------:|
+| ERNIE 5.0 | 6 | 24 | 无上下文缓存功能 |
 
-注：千帆上还有一个QianFan系列的模型，其来头尚不清楚。
-
-### 微调价格
-
-参见百度官方[文档](https://cloud.baidu.com/doc/WENXINWORKSHOP/s/6lrk4bgxb#sft)。
-
-## cohere/command系列
-模型提供平台： [cohere官方平台](https://cohere.com/pricing) / [openrouter](https://openrouter.ai/docs#models) / [Azure](https://azuremarketplace.microsoft.com/en/marketplace/apps/cohere.cohere-command-r-plus-offer?tab=PlansAndPrice)
-
-API是否兼容OpenAI格式：官方平台和Azure不兼容，为自定义格式；第三方平台例如openrouter兼容。
-
-审查情况：无审查
-
-（三个平台统一）价格：
-
-最后更新日期：2025-03-16
-
-| **模型**      | **输入价格（元/M Tokens）** | **输出价格（元/M Tokens）** | **上下文窗口大小（K）** | **备注** |
-|:-----------:|:--------------------:|:--------------------:|:--------------:|:------:|
-| command-r-plus | 18 | 72 | 128 |  |
-| command-r | 1.08 | 4.32 | 128 |  |
-| command-r7b | 0.27 | 1.08 | 128 |  |
-| command-a | 18 | 72 | 256 |  |
-
-### 微调价格
-
-| **模型**      | **微调训练语料输入价格（元/M Tokens）** | **文本模态输入价格（元/M Tokens）** | **文本模态输出价格（元/M Tokens）** | **备注** |
-|:-----------:|:--------------------:|:--------------------:|:--------------:|:------:|
-| command-r | 21.6 | 2.16 | 8.64 |  |
-
-## 月之暗面系列
+## Kimi系列
 模型提供平台： [moonshot开放平台](https://platform.moonshot.cn/docs/pricing/chat#%E4%BA%A7%E5%93%81%E5%AE%9A%E4%BB%B7)
 
-API是否兼容OpenAI格式：是，参见[文档](https://platform.moonshot.cn/docs/api/chat)
+API是否兼容OpenAI格式：是，参见[文档](https://platform.moonshot.cn/docs/guide/migrating-from-openai-to-kimi)
 
 审查情况：未测试，未知
 
 价格：
 
-最后更新日期：2025-04-09
+最后更新日期：2026-02-26
 
-| **模型**      | **输入价格（元/M Tokens）** | **输出价格（元/M Tokens）** | **上下文窗口大小（K）** | **备注** |
-|:-----------:|:--------------------:|:--------------------:|:--------------:|:------:|
-| kimi-latest-8k | 2 | 10 | 8k | 输入击中缓存价格1元/MToks |
-| kimi-latest-32k | 5 | 20 | 32k | 输入击中缓存价格1元/MToks |
-| kimi-latest-128k | 10 | 30 | 128k | 输入击中缓存价格1元/MToks |
-| moonshot-v1-8k | 2 | 10 | 8k |  |
-| moonshot-v1-32k | 5 | 20 | 32k |  |
-| moonshot-v1-8k-vision-preview | 2 | 10 | 8k |  |
-| moonshot-v1-32k-vision-preview | 5 | 20 | 32k |  |
-
-注：kimi背后的模型未支持微调。
+| **模型**      | **输入价格（元/M Tokens）** | **输出价格（元/M Tokens）** | **备注** |
+|:-----------:|:--------------------:|:--------------------:|:------:|
+| kimi-k2.5 | 4 | 21 | 缓存命中0.7元 |
+| kimi-k2-0905-preview | 4 | 16 | 缓存命中1元 |
+| kimi-k2-thinking | 4 | 16 | 缓存命中1元 |
 
 
-## minimaxi系列
-模型提供平台： [minimaxi国内站](https://platform.minimaxi.com/document/Price) / [minimaxi国际站](http://minimax.io/price)
+## minimax系列
+模型提供平台： [minimaxi国内站](https://platform.minimaxi.com/docs/guides/pricing-paygo) / [minimaxi国际站](https://platform.minimax.io/docs/guides/pricing-paygo)
 
 API是否兼容OpenAI格式：是
 
@@ -492,13 +341,43 @@ API是否兼容OpenAI格式：是
 
 价格：
 
-最后更新日期：2025-06-29
+最后更新日期：2026-02-26
 
-| **模型**      | **输入价格（元/M Tokens）** | **输出价格（元/M Tokens）** | **上下文窗口大小（K）** | **备注** |
-|:-----------:|:--------------------:|:--------------------:|:--------------:|:------:|
-| MiniMax-M1 | 0.8 | 8 | 1000 | 输入长度0-32k的情况下最便宜，输入达到128K以上则价格翻3倍，批处理打5折 |
-| MiniMax-Text-01 | 1 | 8 | 1000 |  |
+| **模型**      | **输入价格（元/M Tokens）** | **输出价格（元/M Tokens）** | **备注** |
+|:-----------:|:--------------------:|:--------------------:|:------:|
+| MiniMax-M2.5 | 2.1 | 8.4 | 缓存读取一折，但是缓存写入存在费用，价格为2.625元/MTokens |
 
+## 小米Mimo系列
+模型提供平台： [小米Mimo官方平台](https://platform.xiaomimimo.com/#/docs/pricing) 等
+
+API是否兼容OpenAI格式：是
+
+审查情况：开源模型本身不存在审查，但官方面向国内的服务存在审查。
+
+价格：
+
+最后更新日期：2026-02-26
+
+| **模型**      | **输入价格（元/M Tokens）** | **输出价格（元/M Tokens）** | **备注** |
+|:-----------:|:--------------------:|:--------------------:|:------:|
+| mimo-v2-flash | 0.7 | 2.1 | 输入缓存1折 |
+
+
+## 阶跃星辰系列
+模型提供平台： [阶跃星辰官方平台](https://platform.stepfun.com/docs/pricing/details) 等
+
+API是否兼容OpenAI格式：是
+
+审查情况：开源模型本身不存在审查，但官方面向国内的服务存在审查。
+
+价格：
+
+最后更新日期：2026-02-26
+
+| **模型**      | **输入价格（元/M Tokens）** | **输出价格（元/M Tokens）** | **备注** |
+|:-----------:|:--------------------:|:--------------------:|:------:|
+| step-3.5-flash | 0.7 | 2.1 | 输入缓存2折 |
+| step-3 | 4 | 10 | 输入缓存2折 |
 
 ## 模板
 模型提供平台： []() / []() / []()
@@ -511,19 +390,16 @@ API是否兼容OpenAI格式：
 
 最后更新日期：YYYY-MM-DD
 
-| **模型**      | **输入价格（元/M Tokens）** | **输出价格（元/M Tokens）** | **上下文窗口大小（K）** | **备注** |
-|:-----------:|:--------------------:|:--------------------:|:--------------:|:------:|
+| **模型**      | **输入价格（元/M Tokens）** | **输出价格（元/M Tokens）** | **备注** |
+|:-----------:|:--------------------:|:--------------------:|:------:|
 |  |  |  |  |  |
 |  |  |  |  |  |
 |  |  |  |  |  |
-|  |  |  |  |  |
-|  |  |  |  |  |
-
-### 微调价格
-
-| **模型**      | **微调训练语料输入价格（元/M Tokens）** | **文本模态输入价格（元/M Tokens）** | **文本模态输出价格（元/M Tokens）** | **备注** |
-|:-----------:|:--------------------:|:--------------------:|:--------------:|:------:|
 
 ## 其他
 
-由于看不懂讯飞星火的定价策略和接口调用，故没有收录。
+- 由于看不懂讯飞星火的定价策略和接口调用，故没有收录。
+- 零一万物系列已事实上接近退出竞争市场，故不再收录。
+- Cohere系列已事实上落伍，故不再收录。
+- 蚂蚁百灵团队的Ring、Ling系列相较Kimi系列没有性价比，且无特色，暂不收录。
+- 美团Longcat暂时处于公测阶段不支持付费购买推理额度，暂不收录。
